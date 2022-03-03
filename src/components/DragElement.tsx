@@ -15,14 +15,13 @@ export const DragElement: FC<DragElementProps> = ({model}) => {
       
     },
     collect: (monitor) => ({
-      opacity: monitor.isDragging() ? 0.5 : 1
+      opacity: !!monitor.isDragging() ? 0.5 : 1
     })
   }))
 
-  return (<>
+  return (
     <div style={{opacity}} ref={drag}>
       WOW id : {model.id}
     </div>
-    </>
   )
 }
