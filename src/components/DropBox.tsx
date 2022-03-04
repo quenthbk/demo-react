@@ -5,6 +5,9 @@ import { addItemInBag } from "../store/drag/drag.actions"
 import { DragObject, DragTypes } from "../types/drag"
 import { DragElement } from "./DragElement"
 
+/**
+ * Le composant représantant le sac à objet lâché.
+ */
 export const DropBox: FC = () => {
   const [isOkey, setIsOkey] = useState(false)
   const {state, dispatch} = useContext(DragStoreContext)
@@ -25,7 +28,7 @@ export const DropBox: FC = () => {
   return (
     <>
       {
-        state.bag.map((value, key) => (<DragElement key={key} model={value} />))
+        state.bag.map((value, key) => (<DragElement key={key} item={value} />))
       }
     <div onClick={() => {setIsOkey(! isOkey)}} ref={drop} style={{width: '100px', height: '100px', border}}>
       DRAG {isOkey ? 'e' : 'a'}
