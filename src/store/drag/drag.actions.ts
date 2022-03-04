@@ -1,7 +1,17 @@
 import { DragObject } from "../../types/drag";
-import { DragStoreTypes as T } from "./drag.types";
+import { DragStoreState } from "./drag.types";
 
-
-export type DragStoreAction = 
-  | { type: T.DRAG_ADD_IN_BAG, payload: DragObject}
-  | { type: T.DRAG_NOTHING }
+/**
+ * Ajoute un item dans l'état state de la fonction renvoyé
+ * 
+ * @param item l'item à ajouter 
+ * @returns La fonction callback qui renverra un nouvel état avec l'item ajouté
+ */
+export const addItemInBag = (item: DragObject) => {
+  return (state: DragStoreState): DragStoreState => {
+    return {
+      ...state,
+      bag: [...state.bag, item]
+    }
+  }
+}

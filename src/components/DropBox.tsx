@@ -1,12 +1,11 @@
 import { FC, useContext, useState } from "react"
 import { useDrop } from "react-dnd"
-import { DragStoreConsumerHook, DragStoreContext } from "../store/drag"
-import { DragStoreTypes } from "../store/drag/drag.types"
+import { DragStoreContext } from "../store/drag"
+import { addItemInBag } from "../store/drag/drag.actions"
 import { DragObject, DragTypes } from "../types/drag"
 import { DragElement } from "./DragElement"
 
 export const DropBox: FC = () => {
-  const [basket, setBasket] = useState<DragObject[]>([])
   const [isOkey, setIsOkey] = useState(false)
   const {state, dispatch} = useContext(DragStoreContext)
 
@@ -17,10 +16,7 @@ export const DropBox: FC = () => {
   }))
 
   const handleDrop = (item: DragObject) => {
-    dispatch({
-      type: DragStoreTypes.DRAG_ADD_IN_BAG,
-      payload: item
-    })
+    dispatch(addItemInBag(item))
     setIsOkey((isOkey) => !isOkey)
   }
 
