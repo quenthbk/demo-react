@@ -1,4 +1,4 @@
-import { DragObject } from "../../types/drag";
+import { DragItem } from "../../types/drag";
 import { DragStoreState } from "./drag.types";
 
 /**
@@ -7,7 +7,7 @@ import { DragStoreState } from "./drag.types";
  * @param item l'item à ajouter 
  * @returns La fonction callback qui renverra un nouvel état avec l'item ajouté
  */
-export const addItemInBag = (item: DragObject) => {
+export const addItemInBag = (item: DragItem) => {
   return (state: DragStoreState): DragStoreState => {
     return {
       ...state,

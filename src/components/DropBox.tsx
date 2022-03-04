@@ -2,7 +2,7 @@ import { FC, useContext, useState } from "react"
 import { useDrop } from "react-dnd"
 import { DragStoreContext } from "../store/drag"
 import { addItemInBag } from "../store/drag/drag.actions"
-import { DragObject, DragTypes } from "../types/drag"
+import { DragItem, DragTypes } from "../types/drag"
 import { DragElement } from "./DragElement"
 
 /**
@@ -13,12 +13,12 @@ export const DropBox: FC = () => {
   const {state, dispatch} = useContext(DragStoreContext)
 
   const [{isOver}, drop] = useDrop(() => ({
-    accept: DragTypes.DRAG_OBJECT,
-    drop: (item: DragObject) => handleDrop(item),
+    accept: DragTypes.DRAG_ITEM,
+    drop: (item: DragItem) => handleDrop(item),
     collect: (monitor) => ({isOver: !!monitor.isOver()})
   }))
 
-  const handleDrop = (item: DragObject) => {
+  const handleDrop = (item: DragItem) => {
     dispatch(addItemInBag(item))
     setIsOkey((isOkey) => !isOkey)
   }
