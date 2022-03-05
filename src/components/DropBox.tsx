@@ -1,7 +1,7 @@
 import { FC, useState } from "react"
 import { useDrop } from "react-dnd"
-import { useDragStore } from "../store/drag"
-import { addItemInBag } from "../store/drag/drag.actions"
+import { useDragStore } from "../stores/drag"
+import { addItemInBag } from "../stores/drag/drag.actions"
 import { DragItem, DragTypes } from "../types/drag"
 import { DragElement } from "./DragElement"
 

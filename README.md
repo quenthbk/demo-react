@@ -1,8 +1,6 @@
 # Projet React Demo
 
 Ce projet est le template que j'utilise pour mes projets reacts avec typescript.
-Je préfère supprimer ce que je n'ai pas besoin plutôt que de recréer ou copier les fichiers un par un.
-Il faut bien entendu vérifier les versions de chaque dépendance afin de rester dans les clous.
 
 Projet créé avec [Create React App](https://github.com/facebook/create-react-app).
 
