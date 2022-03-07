@@ -6,11 +6,6 @@ import { FC } from "react";
 export type Action<T> = (state: T) => T
 
 /**
- * Dispatch action (Mirror of React.Dispatch)
- */
-export type Dispatch<A> = (action: A) => void
-
-/**
  * The Store Context
  */
 export interface StoreContext<T> {
