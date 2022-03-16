@@ -1,6 +1,6 @@
 import { createContext, Dispatch, FC, useContext, useReducer } from "react"
 import { Action, Store } from "../types/store";
-
+import produce from 'immer'
 
 /**
  * Création d'un Store complet pour l'application
@@ -11,9 +11,8 @@ import { Action, Store } from "../types/store";
 export const createStore = <T,>(initialState: T): Store<T> => {
   const initalDispatch: Dispatch<Action<T>> =  (_a: Action<T>) => {}
   const Context = createContext({state: initialState, dispatch: initalDispatch});
-  const reducer = (state: T, action: Action<T>): T => {
-    return action(state)
-  }
+  // Création d'un reducer avec la fonction produce d'immer, plus d'info : https://immerjs.github.io/immer/produce
+  const reducer = (state: T, action: Action<T>): T => (produce(state, action))
 
   const Provider: FC = ({children}) => {
     const [state, dispatch] = useReducer(reducer, initialState)

@@ -10,9 +10,7 @@ import { DragStoreState } from "./drag.types";
  */
 export const addItemInBag = (item: DragItem): Action<DragStoreState> => {
   return (state: DragStoreState): DragStoreState => {
-    return {
-      ...state,
-      bag: [...state.bag, item]
-    }
+    state.bag.push(item)
+    return state
   }
 }
