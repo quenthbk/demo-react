@@ -1,6 +1,6 @@
-import { createContext, Dispatch, FC, useContext, useReducer } from "react"
-import { Action, Store } from "../types/store";
-import produce from 'immer'
+import { createContext, Context, FC, useContext, useReducer } from "react"
+import { Action, MutableAction, Store, StoreContext } from "../types/store";
+import { produce as immerProduce } from 'immer'
 
 /**
  * Création d'un Store complet pour l'application
@@ -9,16 +9,23 @@ import produce from 'immer'
  * @returns Un Store entièrement configuré
  */
 export const createStore = <T,>(initialState: T): Store<T> => {
-  const initalDispatch: Dispatch<Action<T>> =  (_a: Action<T>) => {}
-  const Context = createContext({state: initialState, dispatch: initalDispatch});
+  const Context: Context<StoreContext<T>> = createContext(
+    {
+      state: initialState, 
+      dispatch: (_a: Action<T>) => {},
+      produce: (_a: MutableAction<T>) => {}
+    }
+  );
   // Création d'un reducer avec la fonction produce d'immer, plus d'info : https://immerjs.github.io/immer/produce
-  const reducer = (state: T, action: Action<T>): T => (produce(state, action))
+  const reducer = (state: T, action: Action<T>): T => (action(state))
 
   const Provider: FC = ({children}) => {
     const [state, dispatch] = useReducer(reducer, initialState)
+
+    const produce = (action: MutableAction<T>) => dispatch((state) => immerProduce(state, (draft) => action(draft, state)))
   
     return (
-    <Context.Provider value={{state, dispatch}}>
+    <Context.Provider value={{state, dispatch, produce}}>
       {children}
     </Context.Provider>
     )

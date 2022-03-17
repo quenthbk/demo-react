@@ -1,5 +1,5 @@
 import { DragItem } from "../../types/drag";
-import { Action } from "../../types/store";
+import { Action, MutableAction } from "../../types/store";
 import { DragStoreState } from "./drag.types";
 
 /**
@@ -10,7 +10,18 @@ import { DragStoreState } from "./drag.types";
  */
 export const addItemInBag = (item: DragItem): Action<DragStoreState> => {
   return (state: DragStoreState): DragStoreState => {
+    return {
+      ...state,
+      bag: [...state.bag, item]
+    }
+  }
+}
+
+/**
+ * Ajoute un item dans l'état state mais cette fois-ci en utilisant un state mutable
+ */
+export const addItemInBagMutable = (item: DragItem): MutableAction<DragStoreState> => {
+  return (state: DragStoreState) => {
     state.bag.push(item)
-    return state
   }
 }
