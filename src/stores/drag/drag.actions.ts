@@ -1,5 +1,5 @@
 import { DragItem } from "../../types/drag";
-import { Action, MutableAction } from "../../types/store";
+import { Action, MutableAction } from "../../utils/simple-react-store/store";
 import { DragStoreState } from "./drag.types";
 
 /**

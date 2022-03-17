@@ -1,5 +1,5 @@
 import { createContext, Context, FC, useContext, useReducer } from "react"
-import { Action, MutableAction, Store, StoreContext } from "../types/store";
+import { Action, MutableAction, Store, StoreContext } from "./store";
 import { produce as immerProduce } from 'immer'
 
 /**
@@ -36,3 +36,5 @@ export const createStore = <T,>(initialState: T): Store<T> => {
     StoreProvider: Provider
   }
 }
+
+export default createStore

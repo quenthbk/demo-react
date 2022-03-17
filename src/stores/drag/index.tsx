@@ -1,4 +1,4 @@
-import { createStore } from "../../utils/createStore";
+import { createStore } from "../../utils/simple-react-store/createStore";
 import { DragStoreState } from "./drag.types";
 
 const initialState: DragStoreState = {
