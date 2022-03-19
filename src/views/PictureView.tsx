@@ -39,6 +39,13 @@ export const PictureView: FC = () => {
   // Initialisation des valeurs
   useEffect(() => {
     if (container.current) {
+      handleResize()
+      window.addEventListener('resize', handleResize)
+    }
+  }, [container.current])
+
+  const handleResize = () => {
+    if (container.current) {
       const zoneW = container.current.clientWidth
       const zoneH = container.current.clientHeight
       const rapportW = zoneW / REAL_WIDTH
@@ -53,7 +60,7 @@ export const PictureView: FC = () => {
         loaded: true
       })
     }
-  }, [container])
+  }
 
   const handleWheel = (e: React.WheelEvent<HTMLDivElement>) => {
     let nextZoom = 1
@@ -151,7 +158,7 @@ export const PictureView: FC = () => {
       onMouseLeave={() => setIsDragging(false)}
       onMouseMove={handleDrag}
       onDoubleClick={handleDoubleClick}
-      style={{backgroundRepeat: 'no-repeat', width: '100vw', height: '100vh', ...dynamicStyle}} ref={container}>
+      style={{backgroundRepeat: 'no-repeat', width: '100%', height: '100vh', ...dynamicStyle}} ref={container}>
     </div>
   </>
 }
